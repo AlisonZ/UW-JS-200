@@ -1,0 +1,14 @@
+These are answers to the questions on the first gold slide about traversing the dom. That slide provides a visual representation of an html skeleton that is the reference for the following answers.
+
+1. Given the <body> element as variable body, what method(s) would you use to access the <main> node?
+  A: var main = body.children[0];
+
+2. Given the <ul> element as var ul, access <body>
+  A: var main = ul.parentNode
+    var body = main.parentNode
+    OR: var body = ul.parentNode.parentNode <-- ??
+
+3. Given the <p> element as var p, access the 3rd <li>
+  A: var ul = p.previousSibling;
+    var lis = ul.children;
+    var third = lis[2];

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To Do List</title>
+  <link rel="stylesheet" href="toDoList.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+  <main>
+    <h1>To Do:</h1>
+
+    <div class="today">
+      <h2>Today</h2>
+      <ul class="todayList">
+        <li draggable="true">
+          <span class="square"><img src="unchecked-box.png"></span>
+          <span>Reading</span>
+          <a class="move toLater">Move to Later</a>
+          <a class="delete">Delete</a>
+        </li>
+      </ul>
+      <div class="add">
+        <input type="text" /> <a class="add-item">Add</a>
+      </div>
+    </div>
+
+    <div class="later">
+      <h2>Later</h2>
+      <ul class="laterList">
+        <li draggable="true">
+          <span class="square"><img src="unchecked-box.png"></span>
+          <span>Homework</span>
+          <a class="move toToday">Move to Today</a>
+          <a class="delete">Delete</a>
+        </li>
+      </ul>
+      <div class="add">
+        <input type="text" /> <a class="add-item">Add</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="toDoList.js"></script>
+</body>
+</html>
