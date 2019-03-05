@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To Do List</title>
+  <link rel="stylesheet" href="jQueryToDoList.css" />
+</head>
+<body>
+  <main>
+    <h1>To Do:</h1>
+
+    <div class="today">
+      <h2>Today</h2>
+      <ul class="today-list">
+        <li>
+          <span>Reading</span>
+          <a class="move toLater">Move to Later</a>
+          <a class="delete">Delete</a>
+        </li>
+      </ul>
+      <div class="add">
+        <input type="text" /> <a class="add-item">Add</a>
+      </div>
+    </div>
+
+    <div class="later">
+      <h2>Later</h2>
+      <ul class="later-list">
+        <li>
+          <span>Homework</span>
+          <a class="move toToday">Move to Today</a>
+          <a class="delete">Delete</a>
+        </li>
+      </ul>
+      <div class="add">
+        <input type="text" /> <a class="add-item">Add</a>
+      </div>
+    </div>
+  </main>
+
+  <script
+  defer
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous">
+</script>
+  <script defer src="jQueryToDoList.js"></script>
+</body>
+</html>
