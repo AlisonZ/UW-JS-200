@@ -23,7 +23,6 @@ $('.delete').on('click', deleteListItem);
 // list.  Should also update the working (i.e. from Move to Later to Move to Today)
 // and should update the class for that link.
 // Should *NOT* change the done class on the <li>
-
 const moveListItem = function(e) {
   const $li = $(this).parent();
 
@@ -49,6 +48,7 @@ $('.move').on('click', moveListItem);
 // Make sure to add an event listener to your new <li> (if needed)
 
 const addListItem = function(e) {
+  
   e.preventDefault();
   const text = $(this).parent().find('input').val();
   const $ulClass = $(this).parent().parent().hasClass('today') ? 'today-list' : 'later-list';
