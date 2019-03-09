@@ -25,6 +25,7 @@ $('.delete').on('click', deleteListItem);
 // Should *NOT* change the done class on the <li>
 const moveListItem = function(e) {
   const $li = $(this).parent();
+  console.log('this', $(this));
 
   if ($(this).hasClass('toLater')) {
     $(this).removeClass('toLater');
@@ -48,19 +49,14 @@ $('.move').on('click', moveListItem);
 // Make sure to add an event listener to your new <li> (if needed)
 
 const addListItem = function(e) {
-  
   e.preventDefault();
+
+  const $ulClass = $(this).parent().parent().hasClass('today') ? '.today-list' : '.later-list';
   const text = $(this).parent().find('input').val();
-  const $ulClass = $(this).parent().parent().hasClass('today') ? 'today-list' : 'later-list';
-  // console.log('clsss', $ulClass);
-  const $moveClass = $ulClass === 'today-list' ? 'toLater' : 'toToday';
 
   let $addedLi = $('<li>');
   $addedLi.text(text);
-  $addedLi.addClass($ulClass);
-
-  const $addItemName = $('<span>');
-  $addItemName.text(text);
+  $($ulClass).append($addedLi[0]);
 
   let $addDeleteButton = $('<a>');
   $addDeleteButton.text('Delete');
@@ -68,28 +64,31 @@ const addListItem = function(e) {
   $addDeleteButton.on('click', deleteListItem);
 
   let $addMoveButton = $('<a>');
-  let newText = $ulClass === 'later-list' ? 'Move to Today' : 'Move to Later';
-  // console.log('newww', newText);
-  $addMoveButton.text(newText);
+  let newMoveText = $ulClass === '.later-list' ? 'Move to Today' : 'Move to Later';
+  let $moveClass = newMoveText === 'Move to Today' ? 'toToday' : 'toLater';
+
+  $addMoveButton.text(newMoveText);
   $addMoveButton.addClass('move');
   $addMoveButton.addClass($moveClass);
-  $addMoveButton.on('click', moveListItem);
 
-  $addedLi.append($addItemName);
   $addedLi.append($addDeleteButton);
-  $addedLi.append($addMoveButton);
+  $addedLi.append($addMoveButton[0]);
+  $addedLi.on('click', function() {
+    const $aMoveTag = $(this).children('.move');
 
+   if ($($aMoveTag).hasClass('toLater')) {
+      $($aMoveTag).removeClass('toLater');
+      $($aMoveTag).addClass('toToday');
+      $($aMoveTag).text('Move to Today')
+      $('.later-list').append($(this));
 
-
-
-  // console.log('addedli', $addedLi);
-
-
-  if ($ulClass === 'today-list') {
-    $('.today-list').append($addedLi);
-  } else if ($ulClass === 'later-list') {
-    $('.later-list').parent().append($addedLi);
-  }
+    } else if ($($aMoveTag).hasClass('toToday')) {
+      $($aMoveTag).removeClass('toToday');
+      $($aMoveTag).addClass('toLater');
+      $($aMoveTag).text('Move to Later')
+      $('.today-list').append($(this));
+    }
+});
   $(this).parent().find('input').val("");
 }
 
